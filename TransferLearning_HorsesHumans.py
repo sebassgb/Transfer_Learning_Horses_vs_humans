@@ -61,7 +61,7 @@ last_output = last_layer.output
 # Define a Callback class that stops training once accuracy reaches 97.0%
 class myCallback(tf.keras.callbacks.Callback):
      def on_epoch_end(self, epoch, logs={}):
-         if(logs.get('loss')<0.005):
+         if(logs.get('accuracy')>0.97):
             print("\nReached 97% accuracy so cancelling training!")
             self.model.stop_training = True
 
@@ -188,8 +188,8 @@ history = model.fit_generator(
             
 %matplotlib inline
 import matplotlib.pyplot as plt
-acc = history.history['acc']
-val_acc = history.history['val_acc']
+acc = history.history['accuracy']
+val_acc = history.history['val_accuracy']
 loss = history.history['loss']
 val_loss = history.history['val_loss']
 
