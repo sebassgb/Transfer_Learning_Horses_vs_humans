@@ -60,10 +60,10 @@ last_output = last_layer.output
 
 # Define a Callback class that stops training once accuracy reaches 97.0%
 class myCallback(tf.keras.callbacks.Callback):
-  def on_epoch_end(self, epoch, logs={}):
-    if(logs.get('acc')>0.97):
-      print("\nReached 97.0% accuracy so cancelling training!")
-      self.model.stop_training = True
+     def on_epoch_end(self, epoch, logs={}):
+         if(logs.get('loss')<0.005):
+            print("\nReached 97% accuracy so cancelling training!")
+            self.model.stop_training = True
 
 from tensorflow.keras.optimizers import RMSprop
 
@@ -178,10 +178,11 @@ validation_generator =  test_datagen.flow_from_directory( validation_dir,
 # Found 256 images belonging to 2 classes.
 
 callbacks = myCallback()
-history = model.fit_generator(train_generator,
+history = model.fit_generator(
+            train_generator,
             validation_data = validation_generator,
             steps_per_epoch = 100,
-            epochs = 20,
+            epochs=3,
             validation_steps = 50,
             verbose = 2, callbacks=[callbacks])
             
