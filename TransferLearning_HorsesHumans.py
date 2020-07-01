@@ -103,7 +103,6 @@ model.summary()
 # Trainable params: 38,537,217
 # Non-trainable params: 8,975,264
 
- Get the Horse or Human dataset
 path_horse_or_human = f"{getcwd()}/../tmp2/horse-or-human.zip"
 # Get the Horse or Human Validation dataset
 path_validation_horse_or_human = f"{getcwd()}/../tmp2/validation-horse-or-human.zip"
